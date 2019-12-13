@@ -1,0 +1,19 @@
+# 搜索redis
+> docker search redis
+# 拉取redis3.2镜像
+>docker pull redis:3.2
+
+# 启动镜像，生成容器
+> docker run -p 1235:6379 --name="redis3.2"
+-v /usr/gmd/redis/data:/data
+-v /usr/gmd/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+-d redis:3.2 redis-server /usr/local/etc/redis/redis.conf   # 开启redis和redis-server
+--appendonly yes  # 开启appendonly持久化
+
+# 使用如下命令进入容器，即可操作redis
+> docker exec -it [容器ID] redis-cli
+
+# 测试 
+> set key2 123456
+> SHUTDOWN   # 退出
+# 在data数据卷中，查看是否有持久化文件appendonly.aof  

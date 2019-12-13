@@ -1,0 +1,20 @@
+# 搜索mysql
+> docker search mysql 
+# 拉取mysql5.6 镜像
+> docker pull mysql:5.6
+
+# 启动镜像，生成容器
+> docker run -p 3306:3306 --name="mysql5.6"   # 端口映射，设置容器名字
+-v /usr/gmd/mysql/conf:/etc/mysql/conf.d   # 配置数据卷
+-v /usr/gmd/mysql/logs:/logs
+-v /usr/gmd/mysql/data:/var/lib/mysql
+-e MYSQL_ROOT_PASSWORD=123456         # 初始化配置环境，设置root密码
+-d mysql:5.6         # 启动
+
+# 进入容器使用如下命令，即可登录
+> mysql -uroot -p[之前设置的初始化密码]
+
+# 也可以使用 Navivat 连接该数据库，端口地址即为映射的端口地址。
+
+# 通过docker 备份数据到宿主机
+> docker exec [容器ID] sh -c ' exec mysqldump --all-databases -uroot -p"123456"' > /usr/gmd/mysql/all-databases.sql

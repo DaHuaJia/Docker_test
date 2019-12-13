@@ -1,0 +1,15 @@
+﻿# 对centos镜像安装vim 和 net-tools工具
+> FROM centos    # 拉取父镜像
+> MAINTAINER gmd<1158805583@qq.com>   # 维护人员名称和email
+> ENV MYPATH /usr/local   # 定义全局环境变量
+> WORKDIR $MYPATH    # 设置工作路径
+> RUN yum -y install vim    # 安装vim工具
+> RUN yum -y install net-tools    # 安装net-tools工具
+> EXPOSE 80    # 向外暴露80端口
+> CMD echo $MYPATH  # 以下是输出必要的提示信息
+> CMD echo "success ====== ok."
+> CMD /bin/bash
+
+# 完成dockerfile2 文件后，执行如下命令即可。 末尾 "."号很重要
+# dhj/centos02:1.0 表示设置镜像名称，版本为1.0 
+> docker build -f /usr/gmd/files/dockerfile2 -t dhj/centos02:1.0 . 

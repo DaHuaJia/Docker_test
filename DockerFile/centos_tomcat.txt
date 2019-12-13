@@ -3,6 +3,7 @@ FROM centos
 MAINTAINER gmd<1158805583@qq.com>
 
 # 把宿主机上的tomcat 和 jdk 添加到容器中
+# 这里是相对路径，要求运行时路径与这两个文件路径一致
 ADD jdk-8u211-linux-x64.tar.gz /usr/local/
 ADD apache-tomcat-7.0.70.tar.gz /usr/local/
 
